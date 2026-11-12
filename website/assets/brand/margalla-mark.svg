@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Margalla House">
+  <title>Margalla House</title>
+  <path d="M12 58V30a20 20 0 0 1 40 0v28" fill="none" stroke="#173A35" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M14.5 58V45l8.5-8 6 5 9-11 11.5 13v14z" fill="#A9844B"/>
+  <path d="M7 58.5h50" stroke="#173A35" stroke-width="5" stroke-linecap="round"/>
+</svg>

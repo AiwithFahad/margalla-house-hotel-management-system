@@ -12,6 +12,18 @@
 
 ---
 
+## 📂 What's in This Repository
+
+| Folder / File | Contents |
+|---|---|
+| [`website/`](website/) | The complete static website source — guest site (`index.html`), admin dashboard (`admin/`), and all assets (`assets/`: `site.js`, `admin.js`, `voice.js`, `calendar.js`, `core.js`, `config.js`, styles and brand marks). Deployed live on Netlify. |
+| [`n8n/hotel-booking-workflow.json`](n8n/hotel-booking-workflow.json) | The complete n8n automation workflow — **223 nodes**: AI booking agents, Supabase tools, Stripe payment + webhook handling, Google Calendar sync, Gmail notifications and the voice-agent (Retell/ElevenLabs) tool router. |
+| `README.md` | This documentation. |
+
+> 🔒 **Security note:** the workflow export is *sanitized* for public release — the live n8n host and production webhook IDs are replaced with placeholders (`YOUR-N8N-HOST`, `YOUR-WEBHOOK-ID-*`), and no API keys or credentials are included (credentials are name references only). To run it: import the JSON into your own n8n, point the HTTP nodes at your instance, and reconnect your own Supabase / Stripe (test mode) / Gmail / Google Calendar / OpenAI credentials. The website's `config.js` uses Supabase's *publishable* key, which is designed to be public — all data is protected by Row Level Security and validated database functions.
+
+---
+
 ## 📖 Overview
 
 Traditionally, guests phone a hotel to ask about rooms, check prices, reserve, modify or cancel bookings, and ask about facilities. **Margalla House automates all of it** — through a modern website and an AI voice assistant — while hotel management runs rooms, reservations, guests, pricing and operations from a single dashboard.

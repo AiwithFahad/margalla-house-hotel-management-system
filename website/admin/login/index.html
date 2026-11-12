@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Admin sign in — Margalla House</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../../assets/brand/margalla-mark.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="../../assets/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#173A35">
+<link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="../../assets/admin.css"></head>
+<body class="login-body">
+<main class="login-card">
+  <a class="brand" href="../../"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 58V30a20 20 0 0 1 40 0v28" fill="none" stroke="#173A35" stroke-width="5" stroke-linejoin="round"/><path d="M14.5 58V45l8.5-8 6 5 9-11 11.5 13v14z" fill="#A9844B"/><path d="M7 58.5h50" stroke="#173A35" stroke-width="5" stroke-linecap="round"/></svg><span class="brand-text">Margalla House<small>Administration</small></span></a>
+  <h1>Sign in</h1>
+  <form id="login" novalidate>
+    <div id="msg"></div>
+    <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required></div>
+    <div class="field"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password" required></div>
+    <button class="btn btn-primary" style="width:100%">Sign in</button>
+  </form>
+  <p class="small muted" style="margin-top:20px"><a href="../../">Back to website</a></p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="../../assets/config.js"></script><script src="../../assets/core.js"></script>
+<script>
+(async () => {
+  const { sb, esc, friendlyError } = window.HMS;
+  const msg = document.getElementById("msg");
+  // already signed in as admin? go straight to the dashboard
+  const { data: s } = await sb.auth.getSession();
+  if (s.session) { const { data } = await sb.rpc("is_admin"); if (data) return location.replace("../"); }
+  document.getElementById("login").onsubmit = async e => {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim(), password = document.getElementById("pw").value;
+    if (!email || !password) { msg.innerHTML = `<p class="form-msg err">Enter your email and password.</p>`; return; }
+    const btn = e.target.querySelector("button"); btn.disabled = true; btn.textContent = "Signing in…";
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) { btn.disabled = false; btn.textContent = "Sign in";
+      msg.innerHTML = `<p class="form-msg err">${/Invalid login/i.test(error.message) ? "That email and password don’t match an account." : esc(friendlyError(error))}</p>`; return; }
+    const { data: ok } = await sb.rpc("is_admin");
+    if (!ok) { await sb.auth.signOut(); btn.disabled = false; btn.textContent = "Sign in";
+      msg.innerHTML = `<p class="form-msg err">This account doesn’t have administrator access.</p>`; return; }
+    location.replace("../");
+  };
+})();
+</script></body></html>

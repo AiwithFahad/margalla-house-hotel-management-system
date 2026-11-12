@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Dashboard — Margalla House Admin</title>
+<link rel="preconnect" href="https://qpadrgusygbxgtsapewk.supabase.co" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/brand/margalla-mark.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#173A35">
+<link rel="stylesheet" href="../assets/styles.css"><link rel="stylesheet" href="../assets/admin.css"></head>
+<body class="admin-body">
+<div id="gate" class="spinner" role="status" aria-label="Checking access"></div>
+<div class="admin" id="shell" hidden>
+  <aside class="side" id="side">
+    <a class="brand" href="../" target="_blank" rel="noopener"><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M12 58V30a20 20 0 0 1 40 0v28" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round"/><path d="M14.5 58V45l8.5-8 6 5 9-11 11.5 13v14z" fill="#A9844B"/><path d="M7 58.5h50" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/></svg><span class="brand-text">Margalla House<small>Administration</small></span></a>
+    <nav aria-label="Admin"><ul>
+      <li><a href="#overview">Overview</a></li><li><a href="#bookings">Bookings</a></li><li><a href="#rooms">Rooms</a></li>
+      <li><a href="#buildings">Buildings</a></li><li><a href="#guests">Guests</a></li><li><a href="#pricing">Pricing &amp; offers</a></li>
+      <li><a href="#reviews">Reviews</a></li><li><a href="#inquiries">Inquiries</a></li><li><a href="#reports">Reports</a></li>
+    </ul></nav>
+    <div class="side-foot"><span id="who" class="small"></span><button class="btn btn-ghost btn-sm" id="logout">Sign out</button></div>
+  </aside>
+  <div class="main">
+    <header class="topbar"><button class="btn btn-ghost btn-sm menu-btn" id="menu" aria-label="Menu">☰</button><h1 id="title">Overview</h1><div id="actions"></div></header>
+    <section id="view" class="view" tabindex="-1"></section>
+  </div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script defer src="../assets/config.js"></script><script defer src="../assets/core.js"></script>
+<script defer src="../assets/admin.js"></script>
+</body></html>
